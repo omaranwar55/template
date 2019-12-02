@@ -1,0 +1,111 @@
+import React ,{Component} from 'react';
+import './style.css';
+
+class SocialMedia extends Component {
+
+  render(){
+  return (
+    <div class="social-media">
+      <a href="https://www.facebook.com">
+    <div class="social face">
+        <i class="icon fa fa-facebook fa-lg"></i>
+        <p>
+            <span class="info1">Follow Me on</span>
+            <span class="info2">Social Facebook</span>
+        </p>
+    </div>
+    </a>
+    <a href="https://twitter.com/?lang=en">
+    <div class="social twitter">
+        <i class="icon fa fa-twitter fa-lg"></i>
+        <p>
+            <span class="info1">Tweet Me on</span>
+            <span class="info2">Social twitter</span>
+        </p>
+    </div>
+    </a>
+    
+    <a href="https://www.pinterest.com">
+    <div class="social pin">
+        <i class="icon fa fa-pinterest fa-lg"></i>
+        <p>
+            <span class="info1">Pin Me on</span>
+            <span class="info2">Social Pinterest</span>
+        </p>
+    </div>
+    </a>
+</div>
+  );
+  }
+}
+
+export default SocialMedia;
+
+
+
+
+.social-media {
+    height: auto;
+    overflow: hidden
+}
+
+.social-media .social {
+    width: 33.33%;
+    float: left;
+    box-sizing: border-box;
+    padding: 100px 0 100px 60px
+}
+
+
+.social-media .social.face {
+    background: #3b5998;
+}
+
+.social-media .social.twitter {
+    background: #498cbf;
+}
+
+.social-media .social.pin {
+    background: #cc2127;
+}
+
+.social-media .social .icon {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    text-align: center;
+    line-height: 50px;
+    color: #888;
+    float: left;
+    margin-right: 10px
+}
+
+.social-media .social p {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #fff
+}
+
+.social-media .social p span {
+    display: block;
+    margin-bottom: 8px
+}
+
+.social-media .social p span.info2 {
+    font-weight: normal
+}
+
+
+
+return(
+        <a href={SocialItem.link}>
+        <Social>
+        <SocialIcon class={SocialItem.icon}></SocialIcon>
+        <SocialP>
+            <Info1>{SocialItem.title}</Info1>
+            <Info2>{SocialItem.body}</Info2>
+        </SocialP>
+        </Social>
+        </a>
+      )

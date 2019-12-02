@@ -1,0 +1,59 @@
+import React ,{Component} from 'react';
+import axios from 'axios';
+import {NavLinkItems,Box,Span,Img,Overlay,OverlayButton,PortfolioSection,PortfolioItem,PortfolioList,PortfolioTitle, View} from './style.js';
+class Photoshop extends Component {
+  state={
+    images:[],
+    Photo:""
+    }
+  componentDidMount(){
+    axios.get('js/data.json').then( res=> { this.setState({images:res.data.Photoshop}) })
+  }
+
+  handleshow=(Photo)=>{
+    console.log('done');
+        return(
+          <Box><Img src={Photo} alt="show"/></Box>
+          );
+  }
+  handleclick=(image)=>{
+    this.setState({
+      Photo:image
+    })
+  }
+  
+  render(){
+   const {images}=this.state;
+   const PortfolioImages=images.map( (imageItem) => {
+   return(
+        <Box key={imageItem.id}>
+         <Img src={imageItem.image} alt=""/>
+          <Overlay>
+            <OverlayButton onClick={()=>this.handleclick(imageItem.image)}>
+                Show image
+            </OverlayButton>
+          </Overlay>
+      </Box>
+      );
+    })
+  return (
+        <PortfolioSection>
+            <PortfolioTitle><Span>My</Span> Portfolio</PortfolioTitle>
+            <PortfolioList>
+                <PortfolioItem><NavLinkItems className="selected" to="/All"> All</NavLinkItems></PortfolioItem>
+                <PortfolioItem><NavLinkItems className="selected" to="/HTML">HTML</NavLinkItems></PortfolioItem>
+                <PortfolioItem active><NavLinkItems className="selected" to="/Photoshop">Photoshop</NavLinkItems></PortfolioItem>
+                <PortfolioItem><NavLinkItems className="selected" to="/Wordpress">Wordpress</NavLinkItems></PortfolioItem>
+                <PortfolioItem><NavLinkItems className="selected" to="/Mobile">Mobile</NavLinkItems></PortfolioItem>
+            </PortfolioList>
+            <View>
+            <img src={this.state.Photo}/> 
+            </View>
+            <div className="box">
+              {PortfolioImages}
+            </div>
+         </PortfolioSection>
+    ); 
+  }
+}
+export default Photoshop;

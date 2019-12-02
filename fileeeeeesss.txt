@@ -1,0 +1,131 @@
+======================================= APP JS =============================================
+import React from 'react';
+import  test2, { test, x as num} from './module';
+import Child from './child';
+import Item from './components/Items';
+import Items from './components/Items';
+/*test(),test2() dol function f file module.js.
+child da component f file child js w bndh 3leha f component tany. 
+test3() function f nafs el file el ana feh.
+class based component : de el com el ana m3rfha 3n tre2 est5dam el class.
+function based component : de el fun el 3adya el bktbha zy el arrow function.
+stateful component : y3ny com feeh state  (1-class based comp & 2-gwaha state).
+stateless component : com mfehash state   (1-mykonsh gwaha state) as child component el afdl a3rfha b fun based.
+y3ny el component momkn n3mlo zy el arrow function w da afdl w nshel el render w bdl class->const child.
+*/
+class App extends React.Component{
+  state={
+    name: "lala",
+    age: "24",
+    items : [
+      {id:1 , name:"omar" , age:23},
+      {id:2 , name:"anwar" ,age:27},
+      {id:3 , name:"magdy" ,age:28}
+    ]
+  }
+
+  test3(){
+    console.log('hello test3 function');
+  };
+
+  test4 = () =>{
+    console.log('hello test4  arrow function');
+
+  };
+  HandleClick=()=>{
+    console.log(this.state.name);
+    alert("button Clicked");
+  }
+  Handlemouse(){
+    console.log(this.state.name);
+    alert("mouse is go out from the button");
+  }
+  change=()=>{
+    this.setState({
+      age:"23"
+    })
+    console.log(this.state.age);
+  }
+
+render() {
+  return (
+    <div className="App">
+      my number is : {num}
+      {test()}   
+      {test2()}
+      <Child/> 
+      {this.test3()}
+      {this.test4()}
+      <button onClick={this.HandleClick}>Click</button>
+      <br></br>
+      <button onMouseOut={this.Handlemouse.bind(this)}>on mouseover</button>
+      <br></br>
+      <button onClick={this.change}>Change my age</button>
+      <p>my age is :{this.state.age}</p>
+      <br></br>
+      List items :
+      <Items list={this.state.items}/>
+    </div>
+  );
+ }
+}
+
+export default App;
+============================================================================================
+======================================== items. js =========================================
+import React,{Component} from 'react';
+class Items extends Component{
+    render(){
+        /* const id=this.props.id;
+           const name=this.props.name;
+           const age=this.props.age;
+           aw momkn n3mlha kda : const {id , name , age }=this.props; kda hy7otly kol 7aga f mknha.
+           w t7t hnady 3la el id aw el name aw el age 3la tool.
+           math.random(): de function btl3 arkam 3shwa2ya mn 0 le 1 w momkn nzwed *10 3shan ydrb fe 10.(de lw mfesh key).
+        */
+       const {list}=this.props;
+       const theitems = list.map((item)=>{
+           return(
+               <div key={item.id}>
+                   <div> id : {item.id} , name : {item.name} , age : {item.age}</div>
+                    <div>_________________________________</div>
+               </div>
+               
+           )
+       })
+        return(
+            <div>
+                {theitems}
+            </div>
+
+        )
+    }
+}
+export default Items;
+==============================================================================================
+======================================== child.js============================================
+import React ,{Component} from 'react';
+class Child extends Component{
+    render(){
+        return(
+            <div>
+                Child Component
+            </div>
+
+        );
+    }
+}
+export default Child;
+===============================================================================================
+=================================== modules ===================================================
+export const x=2;
+export function test(){
+        console.log('hello react Js');
+}
+export function test2(){
+
+    console.log('hello defult react Js');
+}
+
+export default test2;
+================================================================================================
